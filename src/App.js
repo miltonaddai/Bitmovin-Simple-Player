@@ -3,6 +3,10 @@ import {Player, PlayerEvent} from 'bitmovin-player';
 
 const config = {
   key: '72fc96e3-318b-452f-91c7-bed54f199dd1', 
+  location: {
+    ui: 'https://cdn.bitmovin.com/player/web/8/bitmovinplayer-ui.js',
+    ui_css: 'https://cdn.bitmovin.com/player/web/8/bitmovinplayer-ui.css',
+  },
 };
 
 const player = new Player(document.getElementById('root'), config);
@@ -13,7 +17,7 @@ class App extends Component {
     
     player.load({
       
-      hls: 'https://fliikamediaservice-usea.streaming.media.azure.net/10052118-66f9-4c8f-9304-5f1fec768438/dreambelt.ism/manifest(format=m3u8-cmaf)',
+      hls: ' https://fliikamediaservice-usea.streaming.media.azure.net/6612f446-cc08-4eda-94c8-c37ca95dfbef/ULTIMATE CORNER CLAMPS 2.ism/manifest(format=m3u8-cmaf)',
     }).then(() => {
       player.play();
     });
