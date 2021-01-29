@@ -17,10 +17,12 @@ class App extends Component {
     
     player.load({
       
-      hls: ' https://fliikamediaservice-usea.streaming.media.azure.net/6612f446-cc08-4eda-94c8-c37ca95dfbef/ULTIMATE CORNER CLAMPS 2.ism/manifest(format=m3u8-cmaf)',
-    }).then(() => {
-      player.play();
+      hls: 'https://fliikamediaservice-usea.streaming.media.azure.net/774117b7-f1af-48f4-b2d9-6f51f2b45ffd/4K.Test.MKV.ism/manifest(format=m3u8-cmaf)',
+      poster: 'https://testfliika.azureedge.net/thumbnails/wallpapersden.com_new-tenet-poster-4k_5000x2313.jpg ',
     });
+    // .then(() => {
+    //   player.play();
+    // });
     
     return( 
     <div>
