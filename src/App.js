@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import {Player, PlayerEvent} from 'bitmovin-player';
+import firebase from "./firebase";
+
+
 
 const config = {
   key: '72fc96e3-318b-452f-91c7-bed54f199dd1', 
@@ -11,23 +14,52 @@ const config = {
 
 const player = new Player(document.getElementById('root'), config);
 
+
 class App extends Component {
-  
+
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+       constRef: firebase.firestore().collection("Test_movie"),
+       Test_movie: []
+    };
+  }
+ 
+  getDb(db) {
+    db.get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        let Test_movie = doc.data();
+        Test_movie.key = doc.id;
+        
+        this.setState({
+          Test_movie:this.state.Test_movie.concat(Test_movie)
+        });
+      });
+    });
+  }
+ 
+  conponentDidMount() {
+    this.getDb(this.state.constRef);
+  }
+
+
+
   render() {
     
-    player.load({
-      
-      hls: 'https://fliikamediaservice-usea.streaming.media.azure.net/774117b7-f1af-48f4-b2d9-6f51f2b45ffd/4K.Test.MKV.ism/manifest(format=m3u8-cmaf)',
-      poster: 'https://testfliika.azureedge.net/thumbnails/wallpapersden.com_new-tenet-poster-4k_5000x2313.jpg ',
-    });
-    // .then(() => {
-    //   player.play();
-    // });
+    const Test_movie = this.state.Test_movie.map(() => <div> 
+    {player.load({
+    hls: Test_movie.URL
+    
+  })} 
+  </div>
+  )
+  
     
     return( 
-    <div>
-        Bitmovin testing Legoo
-    </div>
+    
+        <div>Testing Bitmovin</div>
+      
     )
 
 
@@ -36,7 +68,6 @@ class App extends Component {
 
 }
 
- 
 
 
 export default App;
